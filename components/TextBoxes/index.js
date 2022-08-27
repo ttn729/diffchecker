@@ -56,7 +56,7 @@ const TextBoxes = () => {
                 />
 
                 <Button type="submit">
-                    Submit
+                    Compare
                 </Button>
             </form>
 
