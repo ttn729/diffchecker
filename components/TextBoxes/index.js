@@ -1,6 +1,5 @@
 
 import { TextField, Container, Button } from "@mui/material";
-import { margin } from "@mui/system";
 import { useState } from "react";
 
 const TextBoxes = () => {
@@ -13,36 +12,38 @@ const TextBoxes = () => {
 
         if (original && actual) {
             var stringSimilarity = require("string-similarity");
-            var similarity = stringSimilarity.compareTwoStrings(original, actual);
-            setPercentage(parseInt(similarity * 100) + "%")
+            var similarity = stringSimilarity.compareTwoStrings(original.toLocaleLowerCase(), actual.toLocaleLowerCase());
+
+            setPercentage(parseInt(similarity * 100) + "%");
         }
     }
 
-    return (    
-        <Container>
-
+    return (
+        <Container
+        >
             <form noValidate autoComplete="off" onSubmit={handleSubmit}>
                 <TextField
                     onChange={(e) => setOriginal(e.target.value)}
                     label="Original"
+                    variant="standard"
                     fullWidth
                     required
                     multiline
                     rows={4}
-                    sx = {{
+                    sx={{
                         display: 'block'
                     }}
                 />
 
-<TextField
+                <TextField
                     onChange={(e) => setActual(e.target.value)}
-
                     label="Actual"
+                    variant="standard"
                     fullWidth
                     required
                     multiline
                     rows={4}
-                    sx = {{
+                    sx={{
                         display: 'block'
                     }}
                 />
