@@ -7,12 +7,16 @@ const TextBoxes = () => {
     const [actual, setActual] = useState('')
     const [percentage, setPercentage] = useState('')
 
+    const formatString = (s) => {
+        return s.toLocaleLowerCase().replace(/[^\w\s\']|_/g, "").replace(/\s+/g, " ");
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
         if (original && actual) {
             var stringSimilarity = require("string-similarity");
-            var similarity = stringSimilarity.compareTwoStrings(original.toLocaleLowerCase(), actual.toLocaleLowerCase());
+            var similarity = stringSimilarity.compareTwoStrings(formatString(original), formatString(actual));
 
             setPercentage(parseInt(similarity * 100) + "%");
         }
